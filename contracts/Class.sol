@@ -22,11 +22,11 @@ contract Class {
         addReview(2, "Thai Basil Curry", 5 );
     }
 
-    function addReview (uint _product_id, uint _order_number, string _product_name, string _review_message, uint _num_stars) private {
-        require(!hm_orderNumber_bool[_order_number]); // verify uniqueness of orderNumber
+    function addReview (uint _product_id, string _review_message, uint _num_stars) private {
+        require(!hm_orderNumber_bool[_product_id]); // verify uniqueness of orderNumber
         require(_num_stars >= 1 && _num_stars <= 5); // verify if the rating range is valid
         reviewCount ++;
         reviews[reviewCount] = dat(_product_id, _review_message, _num_stars);
-        hm_orderNumber_bool[_order_number] = true;
+        hm_orderNumber_bool[reviewCount] = true;
     }
 }
